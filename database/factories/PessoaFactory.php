@@ -29,8 +29,8 @@ class PessoaFactory extends Factory
             'email' => $this->faker->unique()->email,
             'senha' => Hash::make('password'),
             'data_nascimento' => $this->faker->date(),
-            'pessoaable_type' => Str::random(2),
-            'pessoaable_id' => random_int(1, 100),
+            'pessoaable_type' => 'App\Models\Paciente',
+            'pessoaable_id' => 1,
             'endereco' => $this->faker->address
         ];
     }
