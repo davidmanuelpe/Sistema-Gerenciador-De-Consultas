@@ -5,18 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pessoa extends Model
+class Paciente extends Model
 {
     use HasFactory;
-
     protected $guarded = [];
-    
 
-    public function pessoaable(){
-        return $this->morphTo();
+    public function pessoa(){
+        return $this->morphOne(Pessoa::class, 'pessoaable');
     }
-
-    #protected $casts = [
-    #    'endereco' => 'array'
-    #];
 }
