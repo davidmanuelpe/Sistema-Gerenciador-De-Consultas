@@ -24,7 +24,9 @@ class FuncionarioFactory extends Factory
     {
         return [
             'carga_horaria' => $this->faker->time(),
-            'tipo' => "funcionario"
+            'tipo' => "funcionario",
+            'funcionarioable_type' => 'App\Models\Recepcionista',
+            'funcionarioable_id' => 1
         ];
     }
 }
