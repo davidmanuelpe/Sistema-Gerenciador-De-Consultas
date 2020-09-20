@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Funcionario;
+use App\Models\Recepcionista;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class FuncionarioFactory extends Factory
+class RecepcionistaFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Funcionario::class;
+    protected $model = Recepcionista::class;
 
     /**
      * Define the model's default state.
@@ -23,8 +23,7 @@ class FuncionarioFactory extends Factory
     public function definition()
     {
         return [
-            'carga_horaria' => $this->faker->time(),
-            'tipo' => "funcionario"
+            'tipo' => 'recepcionista'
         ];
     }
 }
