@@ -19,8 +19,11 @@ class CreatePessoasTable extends Migration
             $table->string('cpf');
             $table->string('nome');
             $table->string('data_nascimento');
-            $table->integer('Pessoa_tipo');
-            $table->json('endereco');
+            $table->string('pessoaable_type');
+            $table->unsignedBigInteger('pessoaable_id');
+            $table->string('endereco');
+            $table->string('email');
+            $table->string('senha');
         });
     }
 
