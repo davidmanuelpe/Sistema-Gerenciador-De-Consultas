@@ -22,10 +22,11 @@ class FuncionarioFactory extends Factory
      */
     public function definition()
     {
+        $tipo = array('App\Models\Recepcionista', 'App\Models\Medico');
         return [
             'carga_horaria' => $this->faker->time(),
             'tipo' => "funcionario",
-            'funcionarioable_type' => 'App\Models\Recepcionista',
+            'funcionarioable_type' => $tipo[random_int(0,1)],
             'funcionarioable_id' => random_int(1, 5)
         ];
     }
