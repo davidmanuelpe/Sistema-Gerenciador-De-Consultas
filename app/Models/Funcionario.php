@@ -13,4 +13,8 @@ class Funcionario extends Model
     public function pessoa(){
         return $this->morphOne(Pessoa::class, 'pessoaable');
     }
+
+    public function funcionarioable(){
+        return $this->morphTo();
+    }
 }
