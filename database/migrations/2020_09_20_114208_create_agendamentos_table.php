@@ -17,8 +17,8 @@ class CreateAgendamentosTable extends Migration
             $table->id();
             $table->timestamps();
             $table->dateTime('data');
-            $table->integer('agenda_id')->unsigned();
-            $table->integer('paciente_id')->unsigned();
+            $table->unsignedBigInteger('agenda_id');
+            $table->unsignedBigInteger('paciente_id');
 
             $table->foreign('agenda_id')->references('id')->on('agendas');
             $table->foreign('paciente_id')->references('id')->on('pacientes');
