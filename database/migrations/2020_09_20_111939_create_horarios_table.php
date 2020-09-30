@@ -19,7 +19,7 @@ class CreateHorariosTable extends Migration
             $table->time('horario_inicio');
             $table->time('horario_fim');
             $table->string('dia_semana');
-            $table->integer('agenda_id')->unsigned();
+            $table->unsignedBigInteger('agenda_id');
             $table->foreign('agenda_id')->references('id')->on('agendas');
         });
     }
