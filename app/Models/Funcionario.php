@@ -12,7 +12,7 @@ class Funcionario extends Model
     protected $fillable = ['carga_horaria', 'tipo', 'funcionarioable_type', 'funcionarioable_id'];
 
     public static $rules = ['carga_horaria' => 'required',
-                            'tipo' => 'required|min:11',
+                            'tipo' => 'required|min:11|max:11',
                             'funcionarioable_type' => 'required|min:12', 
                             'funcionarioable_id' => 'required'];
 

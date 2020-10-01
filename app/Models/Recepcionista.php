@@ -11,7 +11,7 @@ class Recepcionista extends Model
     
     protected $fillable = ['tipo'];
 
-    public static $rules = ['tipo' => 'required|min:13'];
+    public static $rules = ['tipo' => 'required|min:13|max:13'];
 
     public static $messages = ['tipo.*' => 'O tipo deve existir'];
 
