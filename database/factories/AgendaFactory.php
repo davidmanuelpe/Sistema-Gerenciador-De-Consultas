@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Agenda;
+use App\Models\Medico;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -23,7 +25,7 @@ class AgendaFactory extends Factory
     public function definition()
     {
         return [
-            'medico_id' => random_int(1, 5)
+            'medico_id' => $this->faker->randomElement(Medico::pluck('id', 'id')->toArray())
         ];
     }
 }

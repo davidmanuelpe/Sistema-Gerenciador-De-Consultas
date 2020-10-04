@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Horario;
+use App\Models\Agenda;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -30,7 +32,7 @@ class HorarioFactory extends Factory
             'horario_inicio' => $brasilFaker->time($format = 'H:i:s', $min='now'),
             'horario_fim' => $brasilFaker->time($format = 'H:i:s', $min='horario_inicio'),
             'dia_semana' => $brasilFaker->dayOfWeek,
-            'agenda_id' => random_int(1, 5)
+            'agenda_id' => $this->faker->unique()->randomElement(Agenda::pluck('id', 'id')->toArray())
         ];
     }
 }
