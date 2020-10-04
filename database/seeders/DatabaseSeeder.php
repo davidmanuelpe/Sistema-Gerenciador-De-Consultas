@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PacienteSeeder::class);
         $this->call(FuncionarioSeeder::class);
         $this->call(PessoaSeeder::class);
+        $this->call(AgendaSeeder::class);
+        $this->call(HorarioSeeder::class);
+        $this->call(AgendamentosSeeder::class);
 
     }
 }
