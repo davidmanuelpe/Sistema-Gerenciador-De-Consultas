@@ -31,7 +31,7 @@ class AgendamentosFactory extends Factory
         return [
             'data' => $brasilFaker->date,
             'agenda_id' => $this->faker->unique()->randomElement(Agenda::pluck('id', 'id')->toArray()),
-            'paciente_id' => $this->faker->unique()->randomElement(Paciente::pluck('id', 'id')->toArray())
+            'paciente_id' => $this->faker->randomElement(Paciente::pluck('id', 'id')->toArray())
         ];
     }
 }
