@@ -6,6 +6,7 @@ use App\Models\Pessoa;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
 
 class PessoaFactory extends Factory
@@ -33,11 +34,26 @@ class PessoaFactory extends Factory
             \App\Models\Paciente::class,
             \App\Models\Funcionario::class,
         ];
-        $pessoaableType = $this->faker->randomElement($pessoaables);
-        $pessoaable = $pessoaableType::factory()->create();
+
+        
+        $funcionario = DB::table('funcionarios')->count();
+        $paciente = DB::table('pacientes')->count();
+
+        if ($paciente == 0){
+            $pessoaableType = \App\Models\Paciente::class;
+            $pessoaable = $pessoaableType::factory()->create();     
+        }
+        elseif ($funcionario == 0 || $funcionario == 1){
+            $pessoaableType = \App\Models\Funcionario::class;
+            $pessoaable = $pessoaableType::factory()->create();
+        }
+        else{
+            $pessoaableType = $this->faker->randomElement($pessoaables);
+            $pessoaable = $pessoaableType::factory()->create();
+        }
+        
 
 
-        $tipo=array('App\Models\Paciente', 'App\Models\Funcionario');
         return [
             'cpf' => $brasilFaker->cpf,
             'nome' => $brasilFaker->firstName,

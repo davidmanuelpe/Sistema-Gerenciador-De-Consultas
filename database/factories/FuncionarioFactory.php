@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Funcionario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class FuncionarioFactory extends Factory
 {
@@ -27,8 +28,25 @@ class FuncionarioFactory extends Factory
             \App\Models\Medico::class,
             \App\Models\Recepcionista::class,
         ];
-        $funcionarioableType = $this->faker->randomElement($funcionarioables);
-        $funcionarioable = $funcionarioableType::factory()->create();
+
+        $medico = DB::table('medicos')->count();
+        $recepcionista = DB::table('recepcionistas')->count();
+
+        if ($medico == 0){
+            $funcionarioableType = \App\Models\Medico::class;
+            $funcionarioable = $funcionarioableType::factory()->create();
+        }
+        elseif ($recepcionista == 0){
+            $funcionarioableType = \App\Models\Recepcionista::class;
+            $funcionarioable = $funcionarioableType::factory()->create();
+        }
+        else{
+            $funcionarioableType = $this->faker->randomElement($funcionarioables);
+            $funcionarioable = $funcionarioableType::factory()->create();
+        }
+
+
+
 
         return [
             'carga_horaria' => $this->faker->time(),
