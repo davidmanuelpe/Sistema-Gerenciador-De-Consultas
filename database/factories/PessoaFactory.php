@@ -28,6 +28,15 @@ class PessoaFactory extends Factory
     {
         $brasilFaker = Faker::create("pt_BR");
 
+
+        $pessoaables = [
+            \App\Models\Paciente::class,
+            \App\Models\Funcionario::class,
+        ];
+        $pessoaableType = $this->faker->randomElement($pessoaables);
+        $pessoaable = $pessoaableType::factory()->create();
+
+
         $tipo=array('App\Models\Paciente', 'App\Models\Funcionario');
         return [
             'cpf' => $brasilFaker->cpf,
@@ -36,8 +45,8 @@ class PessoaFactory extends Factory
             'email' => $brasilFaker->unique()->email,
             'senha' => Hash::make('password'),
             'data_nascimento' => ((string) (random_int(1, 30))) .'/'. ((string)(random_int(1, 12))) . '/' .((string)(random_int(1930, 2015))),
-            'pessoaable_type' => $tipo[random_int(0, 1)],
-            'pessoaable_id' => random_int(1, 5),
+            'pessoaable_type' => $pessoaableType,
+            'pessoaable_id' => $pessoaable->id,
             'endereco' => $brasilFaker->address
         ];
     }

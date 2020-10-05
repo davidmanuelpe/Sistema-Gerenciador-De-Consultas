@@ -22,12 +22,19 @@ class FuncionarioFactory extends Factory
      */
     public function definition()
     {
-        $tipo = array('App\Models\Recepcionista', 'App\Models\Medico');
+
+        $funcionarioables = [
+            \App\Models\Medico::class,
+            \App\Models\Recepcionista::class,
+        ];
+        $funcionarioableType = $this->faker->randomElement($funcionarioables);
+        $funcionarioable = $funcionarioableType::factory()->create();
+
         return [
             'carga_horaria' => $this->faker->time(),
             'tipo' => "funcionario",
-            'funcionarioable_type' => $tipo[random_int(0,1)],
-            'funcionarioable_id' => random_int(1, 5)
+            'funcionarioable_type' => $funcionarioableType,
+            'funcionarioable_id' => $funcionarioable->id
         ];
     }
 }

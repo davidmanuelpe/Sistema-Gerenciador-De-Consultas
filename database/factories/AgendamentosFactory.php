@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Agendamentos;
+use App\Models\Paciente;
+use App\Models\Agenda;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -28,8 +30,8 @@ class AgendamentosFactory extends Factory
 
         return [
             'data' => $brasilFaker->date,
-            'agenda_id' => random_int(1, 5),
-            'paciente_id' => random_int(1, 5)
+            'agenda_id' => $this->faker->unique()->randomElement(Agenda::pluck('id', 'id')->toArray()),
+            'paciente_id' => $this->faker->unique()->randomElement(Paciente::pluck('id', 'id')->toArray())
         ];
     }
 }
