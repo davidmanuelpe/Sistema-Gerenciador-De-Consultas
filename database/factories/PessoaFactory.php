@@ -56,10 +56,10 @@ class PessoaFactory extends Factory
 
         return [
             'cpf' => $brasilFaker->cpf,
-            'nome' => $brasilFaker->firstName,
+            'name' => $brasilFaker->firstName,
             'sobrenome' => $brasilFaker->lastName,
             'email' => $brasilFaker->unique()->email,
-            'senha' => Hash::make('password'),
+            'password' => Hash::make('password'),
             'data_nascimento' => ((string) (random_int(1, 30))) .'/'. ((string)(random_int(1, 12))) . '/' .((string)(random_int(1930, 2015))),
             'pessoaable_type' => $pessoaableType,
             'pessoaable_id' => $pessoaable->id,

@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Faker\Factory;
-use App\Models\Pessoa;
+use App\Models\Administrador;
 
-class PessoaSeeder extends Seeder
+class AdministradorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,6 +20,6 @@ class PessoaSeeder extends Seeder
     
     public function run()
     {
-       Pessoa::factory()->count(10)->create();
+       Administrador::factory()->count(1)->create();
     }
 }

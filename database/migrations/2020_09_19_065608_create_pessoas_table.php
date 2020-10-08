@@ -17,14 +17,14 @@ class CreatePessoasTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('cpf');
-            $table->string('nome');
+            $table->string('name');
             $table->string('sobrenome');
             $table->string('data_nascimento');
             $table->string('pessoaable_type');
             $table->unsignedBigInteger('pessoaable_id');
             $table->string('endereco');
             $table->string('email');
-            $table->string('senha');
+            $table->string('password');
         });
     }
 
