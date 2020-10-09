@@ -22,7 +22,15 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if (Auth::user()->pessoaable->tipo == "funcionario"){
+                    if(Auth::user()->pessoaable->funcionarioable->tipo == "administrador"){
+                        return redirect('admin');
+                    }
+                }
+                else{
+                    return redirect('paciente');
+                }
+                
             }
         }
 

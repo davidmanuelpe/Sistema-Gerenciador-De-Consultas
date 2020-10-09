@@ -27,10 +27,17 @@ class FuncionarioFactory extends Factory
         $funcionarioables = [
             \App\Models\Medico::class,
             \App\Models\Recepcionista::class,
+            \App\Models\Administrador::class
         ];
 
         $medico = DB::table('medicos')->count();
         $recepcionista = DB::table('recepcionistas')->count();
+        $administradorcont = DB::table('administradors')->count();
+
+        if($administradorcont == 0){
+            $funcionarioableType = \App\Models\Administrador::class;
+            $funcionarioable = $funcionarioableType::factory()->create();
+        }
 
         if ($medico == 0){
             $funcionarioableType = \App\Models\Medico::class;
