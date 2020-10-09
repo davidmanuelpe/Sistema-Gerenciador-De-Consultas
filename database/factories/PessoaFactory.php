@@ -36,14 +36,15 @@ class PessoaFactory extends Factory
         ];
 
         
-        $funcionario = DB::table('funcionarios')->count();
-        $paciente = DB::table('pacientes')->count();
-
-        if ($paciente == 0){
+        $funcionariocont = DB::table('funcionarios')->count();
+        $pacientecont = DB::table('pacientes')->count();
+        
+        
+        if ($pacientecont == 0){
             $pessoaableType = \App\Models\Paciente::class;
             $pessoaable = $pessoaableType::factory()->create();     
         }
-        elseif ($funcionario == 0 || $funcionario == 1){
+        elseif ($funcionariocont < 2){
             $pessoaableType = \App\Models\Funcionario::class;
             $pessoaable = $pessoaableType::factory()->create();
         }

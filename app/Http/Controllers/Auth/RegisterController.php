@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Pessoa;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator as somethingelse;
 use App\Validator\PessoaValidator as Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -31,7 +32,20 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected function authenticated(Request $request, $pessoa){
+
+        if($pessoa->pessoaable->tipo == 'funcionario'){
+            if($pessoa->pessoaable->funcionarioable->tipo == 'administrador'){
+                return redirect('admin');
+            }
+        }
+        else{
+            return redirect('paciente');
+        }
+        
+
+
+    }
 
     /**
      * Create a new controller instance.
@@ -71,28 +85,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if ($data['pessoaable_type'] == "funcionario"){
-            if ($data['funcionarioable_type'] == 'medico'){
-                $medico = \App\Models\Medico::create(['tipo' => 'medico']);
-                $polimorph = $medico->funcionario()->create(['carga_horaria' => $data['carga_horaria'], 'tipo' => 'funcionario' ]);
-                
-            }
-            elseif ($data['funcionarioable_type'] == 'recepcionista'){
+    
+        $polimorph = \App\Models\Paciente::create();
 
-                $recepcionista = \App\Models\Recepcionista::create(['tipo' => 'recepcionista']);
-                $polimorph = $recepcionista->funcionario()->create(['carga_horaria' => $data['carga_horaria'], 'tipo' => 'funcionario' ]);
-            }
-            elseif ($data['funcionarioable_type'] == 'administrador'){
-
-                $administrador = \App\Models\Administrador::create(['tipo' => 'administrador']);
-                $polimorph = $administrador->funcionario()->create(['carga_horaria' => $data['carga_horaria'], 'tipo' => 'funcionario' ]);
-            }
-            
-        }
-        elseif ($data['pessoaable_type'] == "paciente"){
-
-            $polimorph = \App\Models\Paciente::create();
-        }
         return $polimorph->pessoa()->create([
             'cpf' => $data['cpf'],
             'name' => $data['name'],
@@ -102,5 +97,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    
     }
+
+    
+
 }
+

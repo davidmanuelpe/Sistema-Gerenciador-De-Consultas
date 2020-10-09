@@ -28,9 +28,8 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="post" action="{{ url('save') }}">
                         @csrf
-
 
                         <div class="form-group row">
                             <label for="cpf" class="col-md-4 col-form-label text-md-right">{{ __('CPF') }}</label>
@@ -138,11 +137,13 @@
                             </div>
                         </div>
 
-                            <div class="form-group row" style="display: none">
+                            <div class="form-group row">
                                 <label for="pessoaable_type" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de Acesso') }}</label>
                                 <div class="col-md-6">
                                 <select class="custom-select{{ $errors->has('pessoaable_type') ? ' is-invalid' : '' }}" id="pessoaable_type" name='pessoaable_type' onchange="return showFuncionario();">
-                                <option value="paciente" selected>Paciente</option>
+                                <option value="" selected>Escolha o tipo de acesso</option>
+                                <option value="paciente">Paciente</option>
+                                <option value="funcionario">Funcionario</option>
                                 </select>
                                 </div>
                                 @if($errors->has('pessoaable_type'))
@@ -153,7 +154,43 @@
                             </div>
                         </div>
 
-                            
+                            <div class="form-group row" id="funcionario" style="display:none" >
+                                <label for="funcionarioable_type" class="col-md-4 col-form-label text-md-right">{{ __('Nível de Acesso') }}</label>
+                                <div class="col-md-6">
+                                <select class="custom-select{{ $errors->has('funcionarioable_type') ? ' is-invalid' : '' }}" id="funcionarioable_type" name='funcionarioable_type'>
+                                <option value="" selected>Escolha o nível de acesso</option>
+                                <option value="medico">Medico</option>
+                                <option value="recepcionista">Recepcionista</option>
+                                <option value="administrador">Administrador</option>
+                                </select>
+                                @if($errors->has('funcionarioable_type'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('funcionarioable_type')}}
+                                    </div>
+                                @endif
+                                </div>
+                            </div>
+                            <div class="form-group row" id="horas" style="display:none" >
+                                <label for="carga_horaria" class="col-md-4 col-form-label text-md-right">{{ __('Carga Horária') }}</label>
+                                <div class="col-md-6">
+                                <select class="custom-select{{ $errors->has('carga_horaria') ? ' is-invalid' : '' }}" id="carga_horaria" name='carga_horaria'>
+                                <option value="" selected>Carga Horária</option>
+                                <option value="1 hora">1 hora</option>
+                                <option value="2 horas">2 horas</option>
+                                <option value="3 horas">3 horas</option>
+                                <option value="4 horas">4 horas</option>
+                                <option value="5 horas">5 horas</option>
+                                <option value="6 horas">6 horas</option>
+                                <option value="7 horas">7 horas</option>
+                                <option value="8 horas">8 horas</option>
+                                </select>
+                                @if($errors->has('carga_horaria'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('carga_horaria')}}
+                                    </div>
+                                @endif
+                                </div>
+                            </div>
                             <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

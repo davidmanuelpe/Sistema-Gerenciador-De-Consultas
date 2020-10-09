@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Faker\Factory;
 use App\Models\Pessoa;
+use App\Models\Administrador;
 
 class PessoaSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class PessoaSeeder extends Seeder
     
     public function run()
     {
+       
        Pessoa::factory()->count(10)->create();
     }
 }

@@ -40,4 +40,8 @@ class User extends Authenticatable
     ];
 
     protected $table = 'pessoas';
+
+    public function pessoaable(){
+        return $this->morphTo();
+    }
 }
