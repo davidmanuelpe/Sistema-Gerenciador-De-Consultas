@@ -25,7 +25,7 @@ class AgendaFactory extends Factory
     public function definition()
     {
         return [
-            'medico_id' => $this->faker->randomElement(Medico::pluck('id', 'id')->toArray())
+            'medico_id' => $this->faker->unique()->randomElement(Medico::pluck('id', 'id')->toArray())
         ];
     }
 }
