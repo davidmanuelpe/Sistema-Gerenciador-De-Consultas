@@ -26,4 +26,9 @@ class Agenda extends Model
     public function agendamentos() {
         return $this->hasMany('App\Models\Agendamentos');
     }
+
+    public function medico()
+    {
+        return $this->belongsTo('App\Models\Medico');
+    }
 }

@@ -77,7 +77,9 @@ class AdminRegisterController extends Controller
         if ($request['pessoaable_type'] == "funcionario"){
             if ($request['funcionarioable_type'] == 'medico'){
                 $medico = \App\Models\Medico::create(['tipo' => 'medico']);
+                \App\Models\Agenda::create(['medico_id' => $medico->id]);
                 $polimorph = $medico->funcionario()->create(['carga_horaria' => $request['carga_horaria'], 'tipo' => 'funcionario' ]);
+                
                 
             }
             elseif ($request['funcionarioable_type'] == 'recepcionista'){

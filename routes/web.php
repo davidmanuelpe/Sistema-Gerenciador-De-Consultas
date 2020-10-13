@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\EditPacienteController;
 use App\Http\Controllers\Auth\AdminRegisterController;
 use App\Http\Controllers\Auth\EditMedicoController;
 use App\Http\Controllers\Auth\EditRecepcionistaController;
+use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\EditPacienteController as ControllersEditPacienteController;
 
 /*
@@ -49,6 +50,8 @@ Route::get('recepcionista', [EditRecepcionistaController::class, 'index']);
 Route::get('recepcionista/edit', [EditRecepcionistaController::class, 'edit']);
 Route::post('editarrecepcionista', [EditRecepcionistaController::class, 'update']);
 Route::get('recepcionista/delete', [EditRecepcionistaController::class, 'destroy']);
+
+Route::get('agendamedicos', [AgendaController::class, 'create']);
 
 Auth::routes();
 

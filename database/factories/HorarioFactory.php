@@ -32,7 +32,7 @@ class HorarioFactory extends Factory
             'horario_inicio' => $brasilFaker->time($format = 'H:i:s', $min='now'),
             'horario_fim' => $brasilFaker->time($format = 'H:i:s', $min='horario_inicio'),
             'dia_semana' => $brasilFaker->dayOfWeek,
-            'agenda_id' => $this->faker->unique()->randomElement(Agenda::pluck('id', 'id')->toArray())
+            'agenda_id' => $this->faker->randomElement(Agenda::pluck('id', 'id')->toArray())
         ];
     }
 }
