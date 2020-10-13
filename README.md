@@ -1,6 +1,8 @@
-Alunos: 
+Aluno: 
 * David Manuel
-* Elizabeth Cristina
-* Matheus Noronha
+
+Conta de administrador:
+email: admin@gmail.com 
+password: admin
 
 # Sistema-Gerenciador-De-Consultas
