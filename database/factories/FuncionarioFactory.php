@@ -24,27 +24,14 @@ class FuncionarioFactory extends Factory
     public function definition()
     {
 
-        $funcionarioables = [
-            \App\Models\Medico::class,
-            \App\Models\Recepcionista::class,
-            \App\Models\Administrador::class
-        ];
-
         $medico = DB::table('medicos')->count();
-        $recepcionista = DB::table('recepcionistas')->count();
-        
-        
-        
-        if ($recepcionista == 0){
-            $funcionarioableType = \App\Models\Recepcionista::class;
-            $funcionarioable = $funcionarioableType::factory()->create();
-        }
-        elseif ($medico <= 10){
+              
+        if ($medico < 10){
             $funcionarioableType = \App\Models\Medico::class;
             $funcionarioable = $funcionarioableType::factory()->create();
         }
         else{
-            $funcionarioableType = $this->faker->randomElement($funcionarioables);
+            $funcionarioableType = \App\Models\Recepcionista::class;
             $funcionarioable = $funcionarioableType::factory()->create();
         }
 

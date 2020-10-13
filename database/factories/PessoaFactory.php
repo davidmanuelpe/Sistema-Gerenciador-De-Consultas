@@ -45,10 +45,10 @@ class PessoaFactory extends Factory
 
         if ($admincont == 0){
             
-            $password = Hash::make("2c4srj3j");
+            $password = Hash::make("admin");
             $pessoaableType = \App\Models\Administrador::create(['tipo' => 'administrador']);
             $funcionario = $pessoaableType->funcionario()->create(['carga_horaria' => '4 horas', 'tipo' => 'funcionario']);
-            $funcionario->pessoa()->create(['cpf' => '107.850.264-10', 'name' => 'David', 'sobrenome' => 'Manuel', 'data_nascimento' => '22/12/1994', 'endereco' => 'Marquês do Pombal, 78', 'email' => 'davidmanuelpe@gmail.com', 'password' => $password]);
+            $funcionario->pessoa()->create(['cpf' => '107.850.264-10', 'name' => 'Admin', 'sobrenome' => 'Manuel', 'data_nascimento' => '22/12/1994', 'endereco' => 'Marechal Deodoro, 115', 'email' => 'Admin@gmail.com', 'password' => $password]);
         }
         
         
