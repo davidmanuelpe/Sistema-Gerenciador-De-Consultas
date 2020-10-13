@@ -9,7 +9,9 @@ class AgendaController extends Controller
 {
     public function create(){
         $medicos = Medico::all();
-        return view('recepcionista/agendamedicos', ['medicos' => $medicos]);
+        $dias = collect(['Segunda-feira', 'Terça-feira', 'Quarta-feira',
+                         'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo']);
+        return view('recepcionista/agendamedicos', ['medicos' => $medicos, 'dias' => $dias]);
         
     }
 }
