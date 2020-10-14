@@ -129,7 +129,7 @@
                                 <label for="carga_horaria" class="col-md-4 col-form-label text-md-right">{{ __('Carga Horária') }}</label>
                                 <div class="col-md-6">
                                 <select class="custom-select{{ $errors->has('carga_horaria') ? ' is-invalid' : '' }}" id="carga_horaria" name='carga_horaria'>
-                                <option value="{{ old('name') ? old('name') : Auth::user()->pessoaable->carga_horaria }}" selected>{{Auth::user()->pessoaable->carga_horaria }}</option>
+                                <option value="{{Auth::user()->pessoaable->carga_horaria }}" selected>{{Auth::user()->pessoaable->carga_horaria }}</option>
                                 <option value="1 hora">1 hora</option>
                                 <option value="2 horas">2 horas</option>
                                 <option value="3 horas">3 horas</option>

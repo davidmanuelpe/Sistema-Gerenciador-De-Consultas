@@ -24,7 +24,7 @@
                             <br>
                             {{$item->horario_fim}}
                             <br>
-                            <a class="label botao" href="{{ url('/recepcionista/agenda/editar-horario/'.$item->id) }}">Editar</a>
+                            <a class="label botao" href="{{ url('recepcionista/agendas/editar-horario/'.$item->id) }}">Editar</a>
                         </div>
                         @endforeach
                 </div>
