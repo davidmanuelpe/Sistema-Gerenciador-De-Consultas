@@ -75,6 +75,7 @@
                     <br>
                         <a class="label botao" href="{{ url('medico/edit') }}">Editar</a>
                         <a class="label botao" href="{{ url('medico/delete') }}">Deletar Perfil</a>
+                        <a class="label botao" href="{{ url('medico/agenda') }}">Agenda</a>
                 </div>
                 
             </div>
