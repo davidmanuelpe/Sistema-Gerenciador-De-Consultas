@@ -18,6 +18,19 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        .label {
+        color: white;
+        padding: 8px;
+        font-family: Arial;
+        }   
+        .botao{
+        background-color: #e7e7e7;
+        color: black;
+        padding: 8px 8px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">

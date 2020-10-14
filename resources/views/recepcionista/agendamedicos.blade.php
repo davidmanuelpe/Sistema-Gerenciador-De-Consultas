@@ -129,9 +129,9 @@
                         @endif
                             </div>
 
-                            <label for="minuto_inicio" class="col-right-2 col-form-label text-md-right">{{ __('Minuto') }}</label>
+                            <label for="minuto_final" class="col-right-2 col-form-label text-md-right">{{ __('Minuto') }}</label>
                             <div class="col-md-3">
-                        <select class="custom-select{{ $errors->has('minuto_inicio') ? ' is-invalid' : '' }}" id="minuto_inicio" name='minuto_inicio'>
+                        <select class="custom-select{{ $errors->has('minuto_final') ? ' is-invalid' : '' }}" id="minuto_final" name='minuto_final'>
                             <option value="">Minuto</option>
                             <option value="{{0 . 0}}">00 Minuto</option>
                             <option value="{{0 . 1}}">01 Minuto</option>
@@ -143,9 +143,9 @@
                             @endif
                         @endforeach
                         </select>
-                        @if($errors->has('minuto_inicio'))
+                        @if($errors->has('minuto_final'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('minuto_inicio')}}
+                                {{ $errors->first('minuto_final')}}
                             </div>
                         @endif
                             </div>
@@ -155,7 +155,7 @@
                         <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Criar Agenda') }}
+                                {{ __('Criar Horário') }}
                             </button>
                         </div>
                     </div>        

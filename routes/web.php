@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\AdminRegisterController;
 use App\Http\Controllers\Auth\EditMedicoController;
 use App\Http\Controllers\Auth\EditRecepcionistaController;
 use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\MedicoAgendaController;
+use App\Http\Controllers\RecepcionistaAgendasController;
 use App\Http\Controllers\EditPacienteController as ControllersEditPacienteController;
 
 /*
@@ -31,27 +33,49 @@ Route::get('paciente', ['middleware' => 'auth', function () {
     return view('paciente/pacientewelcome');
 }]);
 
+#Cadastrar/Editar todo tipo de usuário a partir do menu admin
+
 Route::get('admin/cadastroAdmin', [AdminRegisterController::class, 'create']);
 Route::get('admin', [AdminRegisterController::class, 'index']);
 Route::get('admin/editAdmin', [AdminRegisterController::class, 'edit']);
 Route::post('editaradmin', [AdminRegisterController::class, 'update']);
 Route::post('save', [AdminRegisterController::class, 'store']);
 
+#Editar/Remover Paciente a partir do menu paciente
+
 Route::get('paciente/edit', [EditPacienteController::class, 'edit']);
 Route::post('editarpaciente', [EditPacienteController::class, 'update']);
 Route::get('paciente/delete', [EditPacienteController::class, 'destroy']);
+
+#Editar/Remover Médico a partir do menu Médico
 
 Route::get('medico', [EditMedicoController::class, 'index']);
 Route::get('medico/edit', [EditMedicoController::class, 'edit']);
 Route::post('editarmedico', [EditMedicoController::class, 'update']);
 Route::get('medico/delete', [EditMedicoController::class, 'destroy']);
 
+#Editar/Remover Recepcionista a partir do menu Recepcionista
+
 Route::get('recepcionista', [EditRecepcionistaController::class, 'index']);
 Route::get('recepcionista/edit', [EditRecepcionistaController::class, 'edit']);
 Route::post('editarrecepcionista', [EditRecepcionistaController::class, 'update']);
 Route::get('recepcionista/delete', [EditRecepcionistaController::class, 'destroy']);
 
+#Cadastrar Horário em Agenda
+
 Route::get('agendamedicos', [AgendaController::class, 'create']);
+Route::post('criaragenda', [AgendaController::class, 'store']);
+
+#Exibir Agenda e Horários a partir do menu Médico
+
+Route::get('medico/agenda', [MedicoAgendaController::class, 'index']);
+Route::get('/medico/agenda/horario/{id}', [MedicoAgendaController::class, 'show']);
+
+#Exibir/Editar/Remover Agenda e Horários a partir do menu Recepcionista
+
+Route::get('recepcionista/agendas', [RecepcionistaAgendasController::class, 'index']);
+Route::post('recepcionista/agendas/medico', [RecepcionistaAgendasController::class, 'show']);
+
 
 Auth::routes();
 
