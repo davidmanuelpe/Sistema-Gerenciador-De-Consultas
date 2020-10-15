@@ -22,6 +22,12 @@ class TipoUsuario
                 if(Auth::user()->pessoaable->funcionarioable->tipo == "administrador"){
                     return $next($request);
                 }
+                elseif(Auth::user()->pessoaable->funcionarioable->tipo == "recepcionista"){
+                    return redirect('recepcionista');
+                }
+                elseif(Auth::user()->pessoaable->funcionarioable->tipo == "medico"){
+                    return redirect('medico');
+                }
                 
             }
             else{

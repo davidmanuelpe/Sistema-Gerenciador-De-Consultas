@@ -51,7 +51,7 @@
                             <label for="sobrenome" class="col-md-4 col-form-label text-md-right">{{ __('Sobrenome') }}</label>
 
                             <div class="col-md-6">
-                                <input id="sobrenome" type="text" class="form-control @error('nome') is-invalid @enderror" name="sobrenome" value="{{ old('name') ? old('name') : Auth::user()->sobrenome }}" required autocomplete="sobrenome" autofocus>
+                                <input id="sobrenome" type="text" class="form-control @error('sobrenome') is-invalid @enderror" name="sobrenome" value="{{ old('sobrenome') ? old('sobrenome') : Auth::user()->sobrenome }}" required autocomplete="sobrenome" autofocus>
 
                                 @error('sobrenome')
                                     <span class="invalid-feedback" role="alert">
@@ -65,7 +65,7 @@
                             <label for="data_nascimento" class="col-md-4 col-form-label text-md-right">{{ __('Data de nascimento') }}</label>
 
                             <div class="col-md-6">
-                                <input id="data_nascimento" type="text" class="form-control @error('data_nascimento') is-invalid @enderror" name="data_nascimento" value="{{ old('name') ? old('name') : Auth::user()->data_nascimento }}" required autocomplete="data_nascimento" autofocus>
+                                <input id="data_nascimento" type="text" class="form-control @error('data_nascimento') is-invalid @enderror" name="data_nascimento" value="{{ old('data_nascimento') ? old('data_nascimento') : Auth::user()->data_nascimento }}" required autocomplete="data_nascimento" autofocus>
 
                                 @error('data_nascimento')
                                     <span class="invalid-feedback" role="alert">
@@ -79,7 +79,7 @@
                             <label for="endereco" class="col-md-4 col-form-label text-md-right">{{ __('Endereço') }}</label>
 
                             <div class="col-md-6">
-                                <input id="endereco" type="text" class="form-control @error('endereco') is-invalid @enderror" name="endereco" value="{{ old('name') ? old('name') : Auth::user()->endereco }}" required autocomplete="endereco">
+                                <input id="endereco" type="text" class="form-control @error('endereco') is-invalid @enderror" name="endereco" value="{{ old('endereco') ? old('endereco') : Auth::user()->endereco }}" required autocomplete="endereco">
 
                                 @error('endereco')
                                     <span class="invalid-feedback" role="alert">
@@ -93,7 +93,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('name') ? old('name') : Auth::user()->email }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ? old('email') : Auth::user()->email }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -129,7 +129,7 @@
                                 <label for="carga_horaria" class="col-md-4 col-form-label text-md-right">{{ __('Carga Horária') }}</label>
                                 <div class="col-md-6">
                                 <select class="custom-select{{ $errors->has('carga_horaria') ? ' is-invalid' : '' }}" id="carga_horaria" name='carga_horaria'>
-                                <option value="{{ old('name') ? old('name') : Auth::user()->pessoaable->carga_horaria }}" selected>{{Auth::user()->pessoaable->carga_horaria }}</option>
+                                <option value="{{ old('carga_horaria') ? old('carga_horaria') : Auth::user()->pessoaable->carga_horaria }}" selected>{{Auth::user()->pessoaable->carga_horaria }}</option>
                                 <option value="1 hora">1 hora</option>
                                 <option value="2 horas">2 horas</option>
                                 <option value="3 horas">3 horas</option>
@@ -147,12 +147,15 @@
                                 </div>
                             </div>
                             <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>        
+                                <div class="col-md-2 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Editar') }}
+                                    </button>
+                                </div>
+                                <div class="column">
+                                    <a class="btn btn-primary" href="{{ url('admin') }}">Voltar</a>  
+                                </div>
+                            </div>          
                         </div>
 
                         

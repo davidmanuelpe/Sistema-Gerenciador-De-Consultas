@@ -11,7 +11,7 @@ class HorarioValidator
 
         if(!$validator->errors()->isEmpty())
         {
-            throw new ValidationException($validator, "Erro na validação de Cadastro");
+            throw new ValidationException($validator, "Erro na validação de Horário");
 
             return $validator;
         }

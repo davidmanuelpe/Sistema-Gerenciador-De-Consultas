@@ -63,7 +63,7 @@
                             <label for="sobrenome" class="col-md-4 col-form-label text-md-right">{{ __('Sobrenome') }}</label>
 
                             <div class="col-md-6">
-                                <input id="sobrenome" type="text" class="form-control @error('nome') is-invalid @enderror" name="sobrenome" value="{{ old('sobrenome') }}" required autocomplete="sobrenome" autofocus>
+                                <input id="sobrenome" type="text" class="form-control @error('sobrenome') is-invalid @enderror" name="sobrenome" value="{{ old('sobrenome') }}" required autocomplete="sobrenome" autofocus>
 
                                 @error('sobrenome')
                                     <span class="invalid-feedback" role="alert">
@@ -191,11 +191,15 @@
                                 @endif
                                 </div>
                             </div>
+                            
                             <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-4 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Cadastrar Usuário') }}
                                 </button>
+                            </div>
+                            <div class="column">
+                                <a class="btn btn-primary" href="{{ url('admin') }}">Voltar</a>  
                             </div>
                         </div>        
                         </div>

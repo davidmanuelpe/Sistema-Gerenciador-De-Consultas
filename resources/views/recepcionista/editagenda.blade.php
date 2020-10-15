@@ -160,10 +160,13 @@
 
                         
                         <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-4">
+                        <div class="col-md-4 offset-md-2">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Editar Horário') }}
                             </button>
+                        </div>
+                        <div class="column">
+                            <a class="btn btn-primary" href="{{ url('recepcionista/agendas') }}">Voltar</a>  
                         </div>
                     </div>        
                     </div>

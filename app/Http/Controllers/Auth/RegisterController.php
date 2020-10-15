@@ -9,7 +9,7 @@ use User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator as somethingelse;
-use App\Validator\PessoaValidator as Validator;
+use App\Validator\PessoaValidator;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -57,6 +57,7 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -85,7 +86,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-    
+
+        
         $polimorph = \App\Models\Paciente::create();
 
         return $polimorph->pessoa()->create([
@@ -97,6 +99,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        
     
     }
 
