@@ -6,6 +6,7 @@ use App\Models\Medico;
 use App\Models\Horario;
 use App\Models\Recepcionista;
 use Illuminate\Http\Request;
+use App\Validator\HorarioValidator;
 
 class RecepcionistaAgendasController extends Controller
 {
@@ -39,19 +40,36 @@ class RecepcionistaAgendasController extends Controller
     }
 
     protected function update(Request $request){
-        $inicio = $request['hora_inicio'] . ':' . $request['minuto_inicio'] . ':' . '00';
-        $final = $request['hora_final'] . ':' . $request['minuto_final'] . ':' . '00';
+        try{
 
-        $horario = Horario::find($request['id']);
-        $agenda_id = $horario->agenda->id;
+            HorarioValidator::validate($request->all());
         
-        $horario->update([
-            'horario_inicio' => $inicio,
-            'horario_fim' => $final,
-            'dia_semana' => $request['dia_semana'],
-            'agenda_id' => $agenda_id
-        ]);
-        return redirect('recepcionista/mostraragenda');
+            $inicio = $request['hora_inicio'] . ':' . $request['minuto_inicio'] . ':' . '00';
+            $final = $request['hora_final'] . ':' . $request['minuto_final'] . ':' . '00';
+
+            $horario = Horario::find($request['id']);
+            $agenda_id = $horario->agenda->id;
+            
+            $horario->update([
+                'horario_inicio' => $inicio,
+                'horario_fim' => $final,
+                'dia_semana' => $request['dia_semana'],
+                'agenda_id' => $agenda_id
+            ]);
+            return redirect('recepcionista/agendas');
+        }
+        catch(\App\Validator\ValidationException $exception){
+            $horario = Horario::find($request['id']);
+            $hora_inicio = $horario->horario_inicio[0] . $horario->horario_inicio[1];
+            $minuto_inicio = $horario->horario_inicio[3] . $horario->horario_inicio[4];
+            $hora_final = $horario->horario_fim[0] . $horario->horario_fim[1];
+            $minuto_final = $horario->horario_fim[3] . $horario->horario_fim[4];
+            $dias = collect(['Segunda-feira', 'Terça-feira', 'Quarta-feira',
+                         'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo']);
+            return view('recepcionista/editagenda', ['horario' => $horario, 'dias' => $dias, 'hora_inicio' => $hora_inicio,
+                                                 'minuto_inicio' => $minuto_inicio, 'hora_final' => $hora_final, 'minuto_final' => $minuto_final])
+            ->withErrors($exception->getValidator());
+        }
     }
 
     protected function destroy($id){
