@@ -4,11 +4,11 @@ namespace Database\Factories;
 
 use App\Models\Horario;
 use App\Models\Agenda;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
+use Illuminate\Support\Carbon;
 
 class HorarioFactory extends Factory
 {
@@ -26,12 +26,22 @@ class HorarioFactory extends Factory
      */
     public function definition()
     {
+
+
+        $dias_da_semana = [
+            'Segunda-feira', 'Terça-feira', 'Quarta-feira',
+            'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'
+        ];
+
         $brasilFaker = Faker::create("pt_BR");
 
+        $inicio = Carbon::createFromTime($brasilFaker->numberBetween( 0, 24 ), $brasilFaker->numberBetween( 0, 59 ), 0);
+        $fim = Carbon::createFromFormat('Y-m-d H:i:s', $inicio)->addHours($brasilFaker->numberBetween( 1, 8 ))->addMinutes($brasilFaker->numberBetween( 0, 30 ));
+
         return [
-            'horario_inicio' => $brasilFaker->time($format = 'H:i:s', $min='now'),
-            'horario_fim' => $brasilFaker->time($format = 'H:i:s', $min='horario_inicio'),
-            'dia_semana' => $brasilFaker->dayOfWeek,
+            'horario_inicio' => (substr((string)($inicio), 11, 8)),
+            'horario_fim' => (substr((string)($fim), 11, 8)),
+            'dia_semana' => $brasilFaker->randomElement($dias_da_semana),
             'agenda_id' => $this->faker->randomElement(Agenda::pluck('id', 'id')->toArray())
         ];
     }

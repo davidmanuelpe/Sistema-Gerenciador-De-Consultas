@@ -76,6 +76,7 @@ Route::get('/medico/agenda/horario/{id}', [MedicoAgendaController::class, 'show'
 Route::get('recepcionista/agendas', [RecepcionistaAgendasController::class, 'index']);
 Route::post('recepcionista/agendas/medico', [RecepcionistaAgendasController::class, 'show']);
 Route::get('recepcionista/agendas/editar-horario/{id}', [RecepcionistaAgendasController::class, 'edit']);
+Route::get('recepcionista/agendas/remover-horario/{id}', [RecepcionistaAgendasController::class, 'destroy']);
 Route::post('editaragenda', [RecepcionistaAgendasController::class, 'update']);
 
 Auth::routes();

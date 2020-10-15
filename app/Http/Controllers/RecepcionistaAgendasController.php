@@ -56,6 +56,6 @@ class RecepcionistaAgendasController extends Controller
 
     protected function destroy($id){
         Horario::destroy($id);
-        return redirect('/');
+        return redirect('recepcionista/agendas');
     }
 }
