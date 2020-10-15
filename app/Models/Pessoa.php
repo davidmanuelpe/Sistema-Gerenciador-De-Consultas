@@ -26,7 +26,7 @@ class Pessoa extends Authenticatable
     
     public static $messages = ['cpf.*' => 'O campo CPF é obrigatório e possui o formato (999.999.999-99), e não pode já estar cadastrado no sistema.',
                                'name.*' => 'O campo nome é obrigatório e tem que ter entre 3 e 50 caracteres.',
-                               'sobrenome.*' => 'O campo nome é obrigatório e tem que ter entre 3 e 50 caracteres.',
+                               'sobrenome.*' => 'O campo sobrenome é obrigatório e tem que ter entre 3 e 50 caracteres.',
                                'data_nascimento.*' => 'O campo de data de nascimento é obrigatório e tem o formato DD/MM/AAAA.',
                                'endereco.*' => 'O campo endereco é obrigatório e tem que ter entre 10 e 100 caracteres.',
                                'email.*' => 'O campo email é obrigatório, não pode ser um email já cadastrado no sistema e possui o formato email@email.com.',

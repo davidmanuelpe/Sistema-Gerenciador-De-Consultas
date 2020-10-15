@@ -10,6 +10,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Models\Pessoa;
 use Illuminate\Support\Facades\Auth;
 use Redirect , Response;
+use App\Validator\PessoaValidator;
+use App\Validator\FuncionarioValidator;
 
 class AdminRegisterController extends Controller
 {
@@ -29,25 +31,7 @@ class AdminRegisterController extends Controller
         $this->middleware('admin');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'cpf' => 'required|cpf|unique:pessoas',
-            'name' => 'required|min:3|max:50',
-            'sobrenome' => 'required|min:3|max:50',
-            'data_nascimento' => 'required|data', 
-            'endereco' => 'required|min:10|max:100',
-            'email' => 'required|email|unique:pessoas',
-            'password' => 'required|min:8|confirmed',
-            'pessoaable_type' => 'required',
-        ]);
-    }
+    
 
 
     public function edit(){
@@ -73,7 +57,10 @@ class AdminRegisterController extends Controller
      * @return Pessoa
      */
     protected function store(Request $request){
+        try{
 
+            FuncionarioValidator::validate($request->all());
+            
         if ($request['pessoaable_type'] == "funcionario"){
             if ($request['funcionarioable_type'] == 'medico'){
                 $medico = \App\Models\Medico::create(['tipo' => 'medico']);
@@ -98,6 +85,7 @@ class AdminRegisterController extends Controller
 
             $polimorph = \App\Models\Paciente::create();
         }
+
         $polimorph->pessoa()->create([
             'cpf' => $request['cpf'],
             'name' => $request['name'],
@@ -107,10 +95,23 @@ class AdminRegisterController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
-        return redirect('admin');
+        return redirect('admin')
+        ->with("Usuário Cadastrado com Sucesso!");
+        
+        }
+
+        catch(\App\Validator\ValidationException $exception){
+            return redirect('admin/cadastroAdmin')
+            ->withErrors($exception->getValidator())
+            ->withInput();
+
+
+        }
 }
 
 protected function update(Request $request){
+    #try{
+        #FuncionarioValidator::validate($request->all());
 
     $pessoa = Pessoa::find(Auth::user()->id);
     $funcionario = $pessoa->pessoaable; 
@@ -127,7 +128,16 @@ protected function update(Request $request){
 
     $pessoa->save();
 
-    return redirect('admin');
+    return redirect('admin')
+    ->with("Editado com Sucesso!");
+    #}
+    #catch(\App\Validator\ValidationException $exception){
+      #  return redirect('admin/editAdmin')
+      #  ->withErrors($exception->getValidator())
+     #   ->withInput();
+
+
+    #}
 }
 
 
