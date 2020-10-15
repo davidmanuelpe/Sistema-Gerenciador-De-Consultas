@@ -61,7 +61,7 @@
                         <div class="form-group row" id="horas_inicio">
                             <label for="hora_inicio" class="col-md-2 col-form-label text-md-right">{{ __('Hora') }}</label>
                             <div class="col-md-3">
-                        <select class="custom-select{{ $errors->has('hora_inicio') ? ' is-invalid' : '' }}" id="hora_inicio" name='hora_inicio'>
+                        <select class="custom-select{{ $errors->has('horario_inicio') ? ' is-invalid' : '' }}" id="hora_inicio" name='hora_inicio'>
                             <option value="">Hora</option>
                             <option value="{{0 . 0}}">00 Hora</option>
                             <option value="{{0 . 1}}">01 Hora</option>
@@ -73,16 +73,16 @@
                             @endif
                         @endforeach
                         </select>
-                        @if($errors->has('hora_inicio'))
+                        @if($errors->has('horario_inicio'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('hora_inicio')}}
+                                {{ $errors->first('horario_inicio')}}
                             </div>
                         @endif
                             </div>
 
                             <label for="minuto_inicio" class="col-right-2 col-form-label text-md-right">{{ __('Minuto') }}</label>
                             <div class="col-md-3">
-                        <select class="custom-select{{ $errors->has('minuto_inicio') ? ' is-invalid' : '' }}" id="minuto_inicio" name='minuto_inicio'>
+                        <select class="custom-select{{ $errors->has('horario_inicio') ? ' is-invalid' : '' }}" id="minuto_inicio" name='minuto_inicio'>
                             <option value="">Minuto</option>
                         <option value="{{0 . 0}}">00 Minuto</option>
                         <option value="{{0 . 1}}">01 Minuto</option>
@@ -94,9 +94,9 @@
                             @endif
                         @endforeach
                         </select>
-                        @if($errors->has('minuto_inicio'))
+                        @if($errors->has('horario_inicio'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('minuto_inicio')}}
+                                {{ $errors->first('horario_inicio')}}
                             </div>
                         @endif
                             </div>
@@ -110,7 +110,7 @@
                         <div class="form-group row" id="hora_final">
                             <label for="hora_final" class="col-md-2 col-form-label text-md-right">{{ __('Hora') }}</label>
                             <div class="col-md-3">
-                        <select class="custom-select{{ $errors->has('hora_final') ? ' is-invalid' : '' }}" id="hora_final" name='hora_final'>
+                        <select class="custom-select{{ $errors->has('horario_fim') ? ' is-invalid' : '' }}" id="hora_final" name='hora_final'>
                             <option value="">Hora</option>
                             <option value="{{0 . 0}}">00 Hora</option>
                             <option value="{{0 . 1}}">01 Hora</option>
@@ -122,16 +122,16 @@
                             @endif
                         @endforeach
                         </select>
-                        @if($errors->has('hora_final'))
+                        @if($errors->has('horario_fim'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('hora_final')}}
+                                {{ $errors->first('horario_fim')}}
                             </div>
                         @endif
                             </div>
 
                             <label for="minuto_final" class="col-right-2 col-form-label text-md-right">{{ __('Minuto') }}</label>
                             <div class="col-md-3">
-                        <select class="custom-select{{ $errors->has('minuto_final') ? ' is-invalid' : '' }}" id="minuto_final" name='minuto_final'>
+                        <select class="custom-select{{ $errors->has('horario_fim') ? ' is-invalid' : '' }}" id="minuto_final" name='minuto_final'>
                             <option value="">Minuto</option>
                             <option value="{{0 . 0}}">00 Minuto</option>
                             <option value="{{0 . 1}}">01 Minuto</option>
@@ -143,9 +143,9 @@
                             @endif
                         @endforeach
                         </select>
-                        @if($errors->has('minuto_final'))
+                        @if($errors->has('horario_fim'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('minuto_final')}}
+                                {{ $errors->first('horario_fim')}}
                             </div>
                         @endif
                             </div>
