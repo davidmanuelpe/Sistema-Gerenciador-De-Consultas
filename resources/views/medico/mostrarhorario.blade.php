@@ -21,6 +21,8 @@
                             {{$horario->horario_inicio}}
                             <br>
                             {{$horario->horario_fim}}
+                            <br>
+                            <a class="label botao" href="{{ url('medico/agenda') }}">Voltar</a>
 
                 </div>
                 @csrf

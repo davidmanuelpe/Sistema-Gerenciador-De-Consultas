@@ -35,14 +35,22 @@
                         </div>
                         </div>
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-2 offset-md-4">
+                                <div class="column">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Exibir') }}
                                 </button>
                             </div>
+                            </div>
+                            <div class="column">
+                            <a class="btn btn-primary" href="{{ url('recepcionista') }}">Voltar</a>  
+                            </div>
                         </div>
-                </form>     
+                        
+                </form>
+                     
                 </div>
+                  
                 </div>
             </div>        
         </div>                        
