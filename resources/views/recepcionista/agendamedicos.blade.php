@@ -85,13 +85,8 @@
                         <select class="custom-select{{ $errors->has('horario_inicio') ? ' is-invalid' : '' }}" id="minuto_inicio" name='minuto_inicio'>
                             <option value="">Minuto</option>
                         <option value="{{0 . 0}}">00 Minuto</option>
-                        <option value="{{0 . 1}}">01 Minuto</option>
-                        @foreach (range(2, 59) as $item)
-                            @if((Int)($item) < 10) 
-                            <option value="{{0 . $item}}">{{'0' . $item}} Minutos</option>
-                            @else
+                        @foreach ($minutos as $item)
                             <option value="{{$item}}">{{$item}} Minutos</option>
-                            @endif
                         @endforeach
                         </select>
                         @if($errors->has('horario_inicio'))
@@ -134,13 +129,8 @@
                         <select class="custom-select{{ $errors->has('horario_fim') ? ' is-invalid' : '' }}" id="minuto_final" name='minuto_final'>
                             <option value="">Minuto</option>
                             <option value="{{0 . 0}}">00 Minuto</option>
-                            <option value="{{0 . 1}}">01 Minuto</option>
-                        @foreach (range(2, 59) as $item)
-                            @if((Int)($item) < 10) 
-                            <option value="{{0 . $item}}">{{'0' . $item}} Minutos</option>
-                            @else
+                        @foreach ($minutos as $item)
                             <option value="{{$item}}">{{$item}} Minutos</option>
-                            @endif
                         @endforeach
                         </select>
                         @if($errors->has('horario_fim'))

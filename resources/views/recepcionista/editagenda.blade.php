@@ -22,8 +22,17 @@
                         <div class="form-group row" id="Dias" style="display: none">
                             <label for="dia_semana" class="col-md-4 col-form-label text-md-right">{{ __('Id_Horario') }}</label>
                             <div class="col-md-6">
-                        <select class="custom-select{{ $errors->has('dia_semana') ? ' is-invalid' : '' }}" id="id" name='id' value="{{ old('id') ? old('id') : $horario->id  }}" required autocomplete="id">
+                        <select class="custom-select{{ $errors->has('id') ? ' is-invalid' : '' }}" id="id" name='id' value="{{ old('id') ? old('id') : $horario->id  }}" required autocomplete="id">
                             <option value="{{$horario->id }}">{{$horario->id }}</option>
+                        </select>
+                        </div>
+                        </div>
+
+                        <div class="form-group row" id="Dias" style="display: none">
+                            <label for="dia_semana" class="col-md-4 col-form-label text-md-right">{{ __('Id_Horario') }}</label>
+                            <div class="col-md-6">
+                        <select class="custom-select{{ $errors->has('agenda_id') ? ' is-invalid' : '' }}" id="agenda_id" name='agenda_id' value="{{ old('agenda_id') ? old('agenda_id') : $horario->agenda->id  }}" required autocomplete="agenda_id">
+                            <option value="{{$horario->agenda->id}}">{{$horario->agenda->id}}</option>
                         </select>
                         </div>
                         </div>
@@ -84,13 +93,8 @@
                                 <option value="{{ old('minuto_inicio') ? old('minuto_inicio') : $minuto_inicio}}"selected>{{$minuto_inicio}} Minutos</option>
                             @endif
                         <option value="{{0 . 0}}">00 Minuto</option>
-                        <option value="{{0 . 1}}">01 Minuto</option>
-                        @foreach (range(2, 59) as $item)
-                            @if((Int)($item) < 10) 
-                            <option value="{{0 . $item}}">{{'0' . $item}} Minutos</option>
-                            @else
+                        @foreach ($minutos as $item)
                             <option value="{{$item}}">{{$item}} Minutos</option>
-                            @endif
                         @endforeach
                         </select>
                         @if($errors->has('horario_inicio'))
@@ -141,13 +145,8 @@
                                 <option value="{{ old('minuto_final') ? old('minuto_final') : $minuto_final}}"selected>{{$minuto_final}} Minutos</option>
                             @endif
                             <option value="{{0 . 0}}">00 Minuto</option>
-                            <option value="{{0 . 1}}">01 Minuto</option>
-                        @foreach (range(2, 59) as $item)
-                            @if((Int)($item) < 10) 
-                            <option value="{{0 . $item}}">{{'0' . $item}} Minutos</option>
-                            @else
+                        @foreach ($minutos as $item)
                             <option value="{{$item}}">{{$item}} Minutos</option>
-                            @endif
                         @endforeach
                         </select>
                         @if($errors->has('horario_fim'))
