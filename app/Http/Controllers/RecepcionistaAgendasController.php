@@ -34,8 +34,10 @@ class RecepcionistaAgendasController extends Controller
         $minuto_final = $horario->horario_fim[3] . $horario->horario_fim[4];
         $dias = collect(['Segunda-feira', 'Terça-feira', 'Quarta-feira',
                          'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo']);
+        $minutos = collect(['15', '30', '45']);
         return view('recepcionista/editagenda', ['horario' => $horario, 'dias' => $dias, 'hora_inicio' => $hora_inicio,
-                                                 'minuto_inicio' => $minuto_inicio, 'hora_final' => $hora_final, 'minuto_final' => $minuto_final]);
+                                                 'minuto_inicio' => $minuto_inicio, 'hora_final' => $hora_final, 'minuto_final' => $minuto_final,
+                                                 'minutos' => $minutos]);
 
     }
 

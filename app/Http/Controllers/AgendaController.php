@@ -20,7 +20,8 @@ class AgendaController extends Controller
         $medicos = Medico::all();
         $dias = collect(['Segunda-feira', 'Terça-feira', 'Quarta-feira',
                          'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo']);
-        return view('recepcionista/agendamedicos', ['medicos' => $medicos, 'dias' => $dias]);
+        $minutos = collect(['15', '30', '45']);
+        return view('recepcionista/agendamedicos', ['medicos' => $medicos, 'dias' => $dias, 'minutos' => $minutos]);
         
     }
 

@@ -33,10 +33,13 @@ class HorarioFactory extends Factory
             'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'
         ];
 
+
+        $minutos = ['00','15', '30', '45'];
+
         $brasilFaker = Faker::create("pt_BR");
 
-        $inicio = Carbon::createFromTime($brasilFaker->numberBetween( 0, 24 ), $brasilFaker->numberBetween( 0, 59 ), 0);
-        $fim = Carbon::createFromFormat('Y-m-d H:i:s', $inicio)->addHours($brasilFaker->numberBetween( 1, 8 ))->addMinutes($brasilFaker->numberBetween( 0, 30 ));
+        $inicio = Carbon::createFromTime($brasilFaker->numberBetween( 0, 15 ), $brasilFaker->randomElement($minutos), 0);
+        $fim = Carbon::createFromFormat('Y-m-d H:i:s', $inicio)->addHours($brasilFaker->numberBetween( 1, 8 ));
 
         return [
             'horario_inicio' => (substr((string)($inicio), 11, 8)),
