@@ -21,10 +21,25 @@ class AgendamentosValidator
 
         $horario = $data['hora'] . ':' . $data['minuto'] . ':' . '00';
 
+
+        #Validação de pessoas já marcadas no horário
+
         foreach($agenda->agendamentos as $item){
             if($item->dia_semana == $data['dia_semana']){
                 if($item->horario == $horario){
                     $validator->errors()->add('horario', 
+                    'O horário escolhido já tem alguém marcado');
+                }
+                
+            }
+        }
+
+        #Validação necessária para não deixar agendar minutos após o turno do médico acabar
+        foreach($agenda->horarios as $item){
+            if($item->dia_semana == $data['dia_semana']){
+            $hora_final = date_parse($item->horario_fim);
+            if(($data['hora'] == $hora_final['hour']) && $data['minuto'] > $hora_final['minute']){
+                $validator->errors()->add('horario', 
                     'O horário escolhido já tem alguém marcado');
                 }
             }
