@@ -15,8 +15,10 @@ class CreateAgendamentosTable extends Migration
     {
         Schema::create('agendamentos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->dateTime('data');
+            $table->timestamps();           
+            $table->string('dia_semana');
+            $table->string('horario');
+            $table->string('data');
             $table->unsignedBigInteger('agenda_id');
             $table->unsignedBigInteger('paciente_id');
 

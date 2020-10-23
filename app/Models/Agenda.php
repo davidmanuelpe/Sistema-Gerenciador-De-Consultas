@@ -17,7 +17,7 @@ class Agenda extends Model
 
     public static $rules = ['medico_id' => 'required'];
     
-    public static $messages = ['medico_id.*' => 'O deve referenciar um medico.'];
+    public static $messages = ['medico_id.*' => 'O nome de um médico deve ser selecionado.'];
 
     public function horarios() {
         return $this->hasMany('App\Models\Horario');

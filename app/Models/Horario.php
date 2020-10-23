@@ -16,7 +16,7 @@ class Horario extends Model
 
     public static $rules = ['dia_semana' => 'required|min:3|max:15'];
     
-    public static $messages = ['dia_semana.*' => 'O campo nome é obrigatório e tem que ter entre 3 e 15 caracteres.'];
+    public static $messages = ['dia_semana.*' => 'O dia da semana deve ser selecionado'];
 
     
     public function agenda(){

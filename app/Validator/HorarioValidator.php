@@ -21,6 +21,7 @@ class HorarioValidator
 
         $validator = Validator::make($data, \App\Models\Horario::$rules, \App\Models\Horario::$messages);
 
+        #Validação de presença, necessário aqui pois o horário inicio e fim são separados em hora e minutos na view
 
         if(!isset($data['hora_inicio']) || !isset($data['minuto_inicio'])){
             $validator->errors()->add('horario_inicio', 
@@ -32,19 +33,18 @@ class HorarioValidator
         }
 
         foreach($agenda->horarios as $objeto_horario){
-            $hora_inicial = $objeto_horario->horario_inicio[0] . $objeto_horario->horario_inicio[1];
-            $minuto_inicio = $objeto_horario->horario_inicio[3] . $objeto_horario->horario_inicio[4];
-            $hora_final = $objeto_horario->horario_fim[0] . $objeto_horario->horario_fim[1];
-            $minuto_final = $objeto_horario->horario_fim[3] . $objeto_horario->horario_fim[4];
-            $hora_inicial = (int)($hora_inicial);
-            $minuto_inicio = (int)($minuto_inicio);
-            $hora_final = (int)($hora_final);
-            $minuto_final = (int)($minuto_final);
-            $turno = range($hora_inicial, $hora_final);
+        
+            #Conversão de String em time
+            $hora_inicial = date_parse($objeto_horario->horario_inicio);
+            $hora_final = date_parse($objeto_horario->horario_fim);
+            $minuto_inicio = $hora_inicial['minute'];
+            $minuto_final = $hora_final['minute'];
+
+            $turno = range($hora_inicial['hour'], $hora_final['hour']);
 
             if(((isset($data['id'])) && ($objeto_horario->id != $horario->id)) || (!(isset($data['id'])))){
                 if($data['dia_semana'] == $objeto_horario->dia_semana){
-
+                    #Validação para quando o turno do médico está dentro do range do horário escolhido
                     if(($data['hora_inicio'] < $hora_inicial) && ($data['hora_final'] > $hora_final)){
                         $validator->errors()->add('horario_inicio', 
                         'Não pode ser adicionado à agenda horas em que o médico já trabalha');
@@ -52,6 +52,7 @@ class HorarioValidator
                         'Não pode ser adicionado à agenda horas em que o médico já trabalha');
                     
                     }
+                    #Validação para o horário final é menor que o inicial
                     elseif($data['hora_final'] < $data['hora_inicio']){
                         $validator->errors()->add('horario_inicio', 
                         'O horário final não pode ser mais cedo que o inicial.');
@@ -62,7 +63,7 @@ class HorarioValidator
             }
 
             foreach($turno as $item){
-                
+                    #Validação para quando o horário escolhido está dentro do range do turno do médico
                     if(((isset($data['id'])) && ($objeto_horario->id != $horario->id)) || (!(isset($data['id'])))){
                         if($data['dia_semana'] == $objeto_horario->dia_semana){
                             if($data['hora_inicio'] == $item){
