@@ -12,12 +12,11 @@ class Agendamentos extends Model
 
     use Notifiable;
 
-    protected $fillable = ['agenda_id', 'paciente_id', 'data'];
+    protected $fillable = ['agenda_id', 'paciente_id', 'data', 'horario', 'dia_semana'];
 
     public static $rules = [
         'agenda_id' => 'required',
-        'paciente_id' => 'required',
-        'data' => 'required|date',
+        'paciente_id' => 'required'
     ];
     
     public static $messages = [

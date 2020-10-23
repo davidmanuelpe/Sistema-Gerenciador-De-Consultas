@@ -13,4 +13,8 @@ class Paciente extends Model
     public function pessoa(){
         return $this->morphOne(Pessoa::class, 'pessoaable');
     }
+
+    public function agendamentos() {
+        return $this->hasMany('App\Models\Agendamentos');
+    }
 }

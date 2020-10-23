@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\AdminRegisterController;
 use App\Http\Controllers\Auth\EditMedicoController;
 use App\Http\Controllers\Auth\EditRecepcionistaController;
 use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\AgendamentosController;
 use App\Http\Controllers\MedicoAgendaController;
 use App\Http\Controllers\RecepcionistaAgendasController;
 use App\Http\Controllers\EditPacienteController as ControllersEditPacienteController;
@@ -78,6 +79,13 @@ Route::post('recepcionista/agendas/medico', [RecepcionistaAgendasController::cla
 Route::get('recepcionista/agendas/editar-horario/{id}', [RecepcionistaAgendasController::class, 'edit']);
 Route::get('recepcionista/agendas/remover-horario/{id}', [RecepcionistaAgendasController::class, 'destroy']);
 Route::post('editaragenda', [RecepcionistaAgendasController::class, 'update']);
+
+Route::get('paciente/medicos', [AgendamentosController::class, 'index']);
+Route::post('paciente/medicos', [AgendamentosController::class, 'medicos']);
+Route::post('paciente/medicos/dias', [AgendamentosController::class, 'create']);
+Route::post('agendar', [AgendamentosController::class, 'store']);
+Route::get('paciente/agendamentos', [AgendamentosController::class, 'show']);
+Route::get('paciente/agendamentos/remover-agendamento/{id}', [AgendamentosController::class, 'destroy']);
 
 Auth::routes();
 
