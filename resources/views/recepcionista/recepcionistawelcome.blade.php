@@ -77,6 +77,7 @@
                         <a class="label botao" href="{{ url('recepcionista/delete') }}">Deletar Perfil</a>
                         <a class="label botao" href="{{ url('agendamedicos') }}">Criar Agenda</a>
                         <a class="label botao" href="{{ url('/recepcionista/agendas') }}">Exibir Agendas</a>
+                        <a class="label botao" href="{{ url('/recepcionista/agendamentos') }}">Exibir Agendamentos</a>
                 </div>
                 
             </div>

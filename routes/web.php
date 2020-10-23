@@ -87,6 +87,8 @@ Route::post('agendar', [AgendamentosController::class, 'store']);
 Route::get('paciente/agendamentos', [AgendamentosController::class, 'show']);
 Route::get('paciente/agendamentos/remover-agendamento/{id}', [AgendamentosController::class, 'destroy']);
 
+Route::get('recepcionista/agendamentos', [RecepcionistaAgendamentosController::class, 'index']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
