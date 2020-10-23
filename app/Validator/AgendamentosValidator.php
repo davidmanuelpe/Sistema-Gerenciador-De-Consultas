@@ -23,7 +23,6 @@ class AgendamentosValidator
 
 
         #Validação de pessoas já marcadas no horário
-
         foreach($agenda->agendamentos as $item){
             if($item->dia_semana == $data['dia_semana']){
                 if($item->horario == $horario){
@@ -34,11 +33,13 @@ class AgendamentosValidator
             }
         }
 
-        #Validação necessária para não deixar agendar minutos após o turno do médico acabar
+        #Validação necessária para não deixar agendar minutos após o turno do médico acabar ou minutos antes do turno iniciar
         foreach($agenda->horarios as $item){
             if($item->dia_semana == $data['dia_semana']){
             $hora_final = date_parse($item->horario_fim);
-            if(($data['hora'] == $hora_final['hour']) && $data['minuto'] > $hora_final['minute']){
+            $hora_inicial = date_parse($item->horario_inicio);
+            if((($data['hora'] == $hora_final['hour']) && $data['minuto'] > $hora_final['minute']) 
+            || (($data['hora'] == $hora_inicial['hour']) && $data['minuto'] < $hora_inicial['minute'])){
                 $validator->errors()->add('horario', 
                     'O horário escolhido já tem alguém marcado');
                 }
