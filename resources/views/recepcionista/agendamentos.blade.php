@@ -15,16 +15,16 @@
             <div class="card">
                 <div class="card-header">{{ __('Agendas') }}</div>
                 <div class="card-body">
-                <form method="post" action="{{ url('/recepcionista/agendas/medico') }}">
+                <form method="post" action="{{ url('/recepcionista/agendamentos/paciente') }}">
                     @csrf
                     <div class="form-group row" id="nome_medicos">
                         
-                        <label for="agenda_id" class="col-md-4 col-form-label text-md-right">{{ __('Nome do Médico') }}</label>
+                        <label for="agenda_id" class="col-md-4 col-form-label text-md-right">{{ __('Nome do Paciente') }}</label>
                         <div class="col-md-6">
-                    <select class="custom-select{{ $errors->has('id') ? ' is-invalid' : '' }}" id="medico_id" name='medico_id'>
+                    <select class="custom-select{{ $errors->has('id') ? ' is-invalid' : '' }}" id="paciente_id" name='paciente_id'>
                         <option value="">Selecione o Paciente</option>
                     @foreach ($pacientes as $item)
-                        <option value="{{$item->id}}">{{$item->funcionario->pessoa->name . " " . $item->funcionario->pessoa->sobrenome}}</option>
+                        <option value="{{$item->id}}">{{$item->pessoa->name . " " . $item->pessoa->sobrenome}}</option>
                     @endforeach
                     </select>
                     @if($errors->has('id'))
