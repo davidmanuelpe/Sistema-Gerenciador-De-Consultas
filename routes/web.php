@@ -12,6 +12,7 @@ use App\Http\Controllers\AgendamentosController;
 use App\Http\Controllers\MedicoAgendaController;
 use App\Http\Controllers\RecepcionistaAgendasController;
 use App\Http\Controllers\EditPacienteController as ControllersEditPacienteController;
+use App\Http\Controllers\RecepcionistaAgendamentosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +87,11 @@ Route::post('paciente/medicos/dias', [AgendamentosController::class, 'create']);
 Route::post('agendar', [AgendamentosController::class, 'store']);
 Route::get('paciente/agendamentos', [AgendamentosController::class, 'show']);
 Route::get('paciente/agendamentos/remover-agendamento/{id}', [AgendamentosController::class, 'destroy']);
+
+Route::get('recepcionista/agendamentos', [RecepcionistaAgendamentosController::class, 'index']);
+Route::post('recepcionista/agendamentos/paciente', [RecepcionistaAgendamentosController::class, 'show']);
+Route::get('recepcionista/agendamentos/cancelar-agendamento/{id}', [RecepcionistaAgendamentosController::class, 'destroy']);
+
 
 Auth::routes();
 
